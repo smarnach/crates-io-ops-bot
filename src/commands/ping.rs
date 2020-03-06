@@ -9,11 +9,9 @@ use crate::config::config::Config;
 fn ping(ctx: &mut Context, msg: &Message) -> CommandResult {
     println!("running pong command");
 
-    let ctx_clone = ctx.clone();
-    let data = ctx_clone.data.read();
-    let config = data.get::<Config>().expect("Expected config");
+    let config = ctx.data.read().get::<Config>().expect("Expected config").clone();
 
-    if is_authorized(&msg.author.id.to_string(), config) {
+    if is_authorized(&msg.author.id.to_string(), &*config) {
         msg.reply(ctx, "Pong!")?;
     } else {
         msg.reply(

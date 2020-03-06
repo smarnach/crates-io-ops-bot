@@ -14,7 +14,6 @@ pub fn is_authorized(id: &str, config: &Config) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::env;
 
     fn test_config() -> Config {
         Config::new(

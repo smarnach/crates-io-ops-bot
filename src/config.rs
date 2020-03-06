@@ -1,4 +1,5 @@
 pub mod config {
+    use std::sync::Arc;
     use serenity::prelude::TypeMapKey;
 
     #[derive(Debug)]
@@ -23,6 +24,6 @@ pub mod config {
     }
 
     impl TypeMapKey for Config {
-        type Value = Config;
+        type Value = Arc<Config>;
     }
 }
